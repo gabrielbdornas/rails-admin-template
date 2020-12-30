@@ -9,7 +9,7 @@ pt-BR:
       user:
         one: "Usuário"
         other: "Usuários"
-     attributes:
+    attributes:
       user:
         name: "Nome"
         admin: "Administrador"
