@@ -58,6 +58,13 @@ app/views/devise/sessions new file
 <h3>RAILS ADMIN TEMPLATE</h3>
 ```
 
+[ ] Criar Banco
+
+```
+# terminal
+$ rails db:create db:migrate db:seed
+```
+
 [ ] Criação Models:
 
 1 - Criar Mode
