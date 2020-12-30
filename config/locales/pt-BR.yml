@@ -59,7 +59,7 @@ pt-BR:
       message: "Mensagem"
     actions:
       dashboard:
-        title: "Bem vindo ao painel de lancamentos manuais do Fhemig em Números"
+        title: "Bem vindo ao painel de lancamentos rails_admin_template"
         menu: "Dashboard"
         breadcrumb: "Dashboard"
       index:

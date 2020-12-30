@@ -23,13 +23,13 @@ default: &default
 
 development:
   <<: *default
-  database: fhemig_numeros_manual_development
+  database: rails_admin_template_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: fhemig_numeros_manual
+  #username: rails_admin_template
 
   # The password associated with the postgres role (username).
   #password:
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: fhemig_numeros_manual_test
+  database: rails_admin_template_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: fhemig_numeros_manual_production
-  username: fhemig_numeros_manual
-  password: <%= ENV['FHEMIG_NUMEROS_MANUAL_DATABASE_PASSWORD'] %>
+  database: rails_admin_template_production
+  username: rails_admin_template_
+  password: <%= ENV['RAILS_ADMIN_TEMPLATE_DATABASE_PASSWORD'] %>

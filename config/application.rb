@@ -8,7 +8,7 @@ Bundler.require(*Rails.groups)
 
 ENV['RAILS_ADMIN_THEME'] = 'rollincode'
 
-module FhemigNumerosManual
+module RailsAdminTemplate
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0

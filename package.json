@@ -1,5 +1,5 @@
 {
-  "name": "fhemig-numeros-manual",
+  "name": "rails-admin-template",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",

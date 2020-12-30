@@ -18,6 +18,30 @@ $ git branch -M main
 $ git push origin main
 ```
 
+[ ] Trocar nome databases
+
+```
+# config/database.yml
+
+development:
+  <<: *default
+  database: rails_admin_template_development
+
+test:
+  <<: *default
+  database: rails_admin_template_test
+
+production:
+  <<: *default
+  database: rails_admin_template_production
+  username: rails_admin_template_
+  password: <%= ENV['RAILS_ADMIN_TEMPLATE_DATABASE_PASSWORD'] %>
+```
+
+[ ] Finalizando adaptação
+
+localizar todos "rails_admin_template", "rails-admin-template" e "RailsAdminTemplate" e substituir pelo nome do projeto
+
 [ ] Customizar nome do app
 
 ```
