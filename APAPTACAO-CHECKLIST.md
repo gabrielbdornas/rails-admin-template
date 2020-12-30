@@ -1,5 +1,23 @@
 # Modificações/Adaptações do Modelo:
 
+[ ] Copiar e Colar Pasta do Projeto
+
+[ ] Renomear pasta com novo nome do projeto
+
+[ ] Apagar pasta .git
+
+[ ] Criar nova pasta .git e sincronizar com github
+
+```
+# Terminal
+
+$ git init
+$ gc "commit inicial - criação do projeto"
+$ hub create
+$ git branch -M main
+$ git push origin main
+```
+
 [ ] Customizar nome do app
 
 ```
