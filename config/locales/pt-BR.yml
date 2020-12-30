@@ -9,38 +9,13 @@ pt-BR:
       user:
         one: "Usuário"
         other: "Usuários"
-      crib_index:
-        one: "Índice Crib"
-        other: "Indices Crib"
-      apache_index:
-        one: "Índice Apache"
-        other: "Indices Apache"
-    attributes:
+     attributes:
       user:
-        unidade_abreviacao: "Unidade"
+        name: "Nome"
+        admin: "Administrador"
         email: "Email"
         password: "Senha"
         password_confirmation: "Confirmação Senha"
-      crib_index:
-        user_id: "Hospital"
-        period: "Período"
-        grau: "Grau"
-        score_crib: "Crib Score"
-        predicao_obitos: "Predição de Óbitos"
-        numero_saidas_rn: "Número de saídas de RN"
-        numero_obitos_ocorridos: "Número de Óbitos Ocorridos"
-        numero_obitos_esperados: "Número de Óbitos Esperados"
-        updated_at: "Data de Criação / Atualização"
-      apache_index:
-        user_id: "Hospital"
-        period: "Período"
-        grau: "Grau"
-        score_apaxe: "Apache Score"
-        predicao_obitos: "Predição de Óbitos"
-        numero_saidas_rn: "Número de saídas"
-        numero_obitos_ocorridos: "Número de Óbitos Ocorridos"
-        numero_obitos_esperados: "Número de Óbitos Esperados"
-        updated_at: "Data de Criação / Atualização"
   views:
   admin:
     home:

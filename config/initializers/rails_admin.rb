@@ -1,13 +1,12 @@
 RailsAdmin.config do |config|
 
   # Customizando o nome do app
-  config.main_app_name = ["Fhemig em Números", "| Lançamentos Manuais"]
+  config.main_app_name = ["Colocar Aqui", "| Nome do App"]
 
   # Personalizando menu de navegação com links adicionais
   config.navigation_static_links = {
     # Apontar para youtube com vídeos e tutoriais para alimentação de cada tabela
-    'Tutoriais' => 'https://www.youtube.com/playlist?list=PL3IzYsZ_t_17yJbu3aK8qj_WMn-_fGruq',
-    'Código aberto' => 'https://github.com/gabrielbdornas/fhemig-numeros-manual'
+    'Links' => 'https://google.com' # COLOCAR LINK DESEJADO
   }
 
   config.navigation_static_label = "Lins Úteis"

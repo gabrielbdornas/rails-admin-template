@@ -6,20 +6,22 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :email, uniqueness: true
   validates :password, :password_confirmation, presence: true
-  has_many :crib_indices
-  has_many :apache_indices
 
   rails_admin do
     show do
-      field  :unidade_abreviacao
+      field  :name
+      field  :admin
       field  :email
     end
     list do
-      field  :unidade_abreviacao
+      field  :name
+      field  :admin
       field  :email
     end
     edit do
+      field  :name
       field  :email
+      field  :admin
       field  :password
       field  :password_confirmation
     end

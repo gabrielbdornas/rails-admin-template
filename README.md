@@ -188,102 +188,13 @@ end
 
 obs.: utilizar ApplicationController.helpers.date_between para chamar o array criado
 
-- Habilitar tabela crib_index para cadastro
-
-```
-# rails_admin initializer
-
-  config.model CribIndex do
-    create do
-      field  :period, :enum do
-        help 'Por favor selecione o mes'
-        enum do
-          ApplicationController.helpers.date_between
-        end
-      end
-      field  :grau
-      field  :score_crib
-      field  :predicao_obitos
-    end
-  end
-```
-
-[x] Usuário sempre será vinculado ao registro que ele está criando
-
--- Índice Crib vinculado ao usuário que está cadastrando, configurando todo CRUD da tabela no model (verificar todo model CribIndex)
-
-[x] Usuário poderá acessar dados de sua conta e trocar senha
-
-```
-# user model
-
-class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  # :registerable, :recoverable, :rememberable, -- para não deixar usuário se cadastrar ou recuperar senha
-  devise :database_authenticatable, :validatable
-  validates :email, presence: true
-  validates :email, uniqueness: true
-  validates :password, :password_confirmation, presence: true
-  has_many :crib_indexes
-
-  rails_admin do
-    list do
-      field  :unidade_abreviacao do
-        label 'Unidade'
-      end
-      field  :email do
-        label 'Email'
-      end
-    end
-    edit do
-      field  :email do
-        label 'Email'
-      end
-      field  :password do
-        label 'Senha'
-      end
-      field  :password_confirmation do
-        label 'Confirmação Senha'
-      end
-    end
-  end
-end
-
-```
-
-[x] Tabela crib_indices com primary_key juntando os campos (usuario_id, period, grau, score_crib)
-
-```
-# Acrescentado no crib_index model
-# https://stackoverflow.com/questions/41888549/how-to-implement-composite-primary-keys-in-rails
-  validates :user_id, uniqueness: { scope: [:period, :grau],
-      message: "Apenas um Grau por período" }
-```
-[x] Tabela crib_indices adicionando score_crib automaticamente a partir do grau (validar esta regra com Jaime)
-
-```
-# Acrescentado um befor_action no model score_crib
-
-before_save do
-    if self.grau == 'I'
-      self.score_crib = '0 a 5'
-    elsif self.grau == 'II'
-      self.score_crib = '6 a 10'
-    elsif self.grau == 'III'
-      self.score_crib = '11 a 15'
-    else
-      self.score_crib = '> 15'
-    end
-  end
-```
 
 [x] Customizando nome do app
 
 ```
 initializers/rails_admin config file
 
-config.main_app_name = ["Fhemig em Números", "Lançamentos Manuais"]
+config.main_app_name = ["Colocar Aqui", "| Nome do App"]
 ```
 
 [x] Acrescentando links personalizados
@@ -292,7 +203,7 @@ config.main_app_name = ["Fhemig em Números", "Lançamentos Manuais"]
 initializers/rails_admin config file
 
 config.navigation_static_links = {
-  'Tutoriais' => 'https://youtube.com' # APONTAR PARA REPO YOUTUBE COM OS TUTORIAIS DE CADA TABELA
+  'Links' => 'https://google.com' # COLOCAR LINK DESEJADO
 }
 
 config.navigation_static_label = "Lins Úteis"
@@ -324,71 +235,3 @@ end
 
 Instalação de nova gem - https://github.com/rollincode/rails_admin_theme
 
-[ ] Criar indice apache
-
-- Criar model apache
-
-```
-terminal
-
-$ rails g model ApacheIndex user:references period:string grau:string score_apache:string predicao_obitos:float numero_saidas:float numero_obitos_ocorridos:float numero_obitos_esperados:float
-```
-
-- ActiveRecord Vinculaçoes / Validaçoes / rails_admin Configuraçoes
-
-```
-# User Model
-has_many :apache_indices
-```
-
-```
-# ApacheIndex Model
-belongs_to :user
-validates :period, presence: true, inclusion: ApplicationController.helpers.date_between
-validates :grau, presence: true
-# https://guides.rubyonrails.org/active_record_validations.html#uniqueness
-# https://stackoverflow.com/questions/41888549/how-to-implement-composite-primary-keys-in-rails
-validates :user_id, uniqueness: { scope: [:period, :grau],
-    message: "Apenas um Grau por período" }
-# https://stackoverflow.com/questions/6881900/how-to-check-if-a-number-is-included-in-a-range-in-one-statement
-validates :predicao_obitos, presence: true, numericality: {only_integer: false, greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
-validates :numero_saidas, presence: true, numericality: {only_integer: false, greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
-validates :numero_obitos_ocorridos, presence: true, numericality: {only_integer: false, greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
-validates :numero_obitos_esperados, presence: true, numericality: {only_integer: false, greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
-
-# Rails admin configuraçoes grande - incluído no próprio model
-```
-
-
-- Incluir autorizaçoes da tabela no model ability (cancancan)
-
-```
-class Ability
-  include CanCan::Ability
-
-  def initialize(user)
-    if user
-      if user.admin == false
-        # https://stackoverflow.com/questions/44497687/a-gem-cancan-access-denied-maincontroller-dashboard?answertab=votes#tab-top
-        can :dashboard, :all
-        can :access, :rails_admin
-        can :read, :dashboard
-        can :read, User, id: user.id
-        can :update, User, id: user.id
-        can :manage, CribIndex, user: user
-        can :manage, ApacheIndex, user: user
-      elsif user.admin == true
-        can :manage, :all
-      end
-    end
-  end
-end
-```
-
-- Traduzir nome da tabela e atributos no arquivo pt-BR.yml
-
-- Configurar Model
-
-# Funcionalidades para futuras versões
-[] Trocar o e-mail dos seeds para e-mails verdadeiros de cada unidade
-[] Usuário poderá recuperar senha
