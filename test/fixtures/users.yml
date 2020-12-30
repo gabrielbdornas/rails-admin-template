@@ -1,11 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  admin: 
-  unidade_id: 
-  unidade_abreviacao: MyString
+  name:
+  admin:
 
 two:
-  admin: 
-  unidade_id: 
-  unidade_abreviacao: MyString
+  name:
+  admin:
+
